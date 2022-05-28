@@ -18,7 +18,7 @@ To address these challenges, we model the cartilages structure and appearance fr
 - [x] Cartilage Surface Network code
 - [x] Visualization code
 - [x] Reproduced Methods for Comparisons
-- [x] [A Segmentation Tool](https://github.com/zixuzhuang/LabelMore)
+- [x] [Our Segmentation Tool](https://github.com/zixuzhuang/LabelMore)
 
 ## Installation
 This code requires PyTorch 1.1+ and DGL 0.6+.
@@ -30,41 +30,47 @@ pip install -r requirements.txt
 ```
 
 ## Usage
-In order to run our framework successfully, you need to execute the code in the following order:
+In order to run our framework successfully, the code need to be executed in the following order:
 
 ### 1. Transform the knee MRI into the graph representation for computation and the knee mesh for visualization
+This step requires knee bone segmentation. We recommend using [our segmenation tool](https://github.com/zixuzhuang/LabelMore) to obtain them.
+
 ```bash
-python graph_construction.py -org <mri-data> -seg <seg-data> -grade <grade> -graph <graph-save-path> -mesh <mesh-save-path>
+python graph_construction.py -org <mri-data> -seg <seg-data> \
+ -grade <grade> -graph <graph-save-path> -mesh <mesh-save-path>
 ```
 
-You can run this step directly without any parameters because this demo already comes with them.
+It can be run directly without any parameters because this demo already comes with them.
 ```bash
 python graph_construction.py
 ```
 
-This step requires knee bone segmentation. We recommend using our [convenient segmenation tool](https://github.com/zixuzhuang/LabelMore) to obtain them.
+
 
 ### 2. Train the CSNet
 ```bash
-CUDA_VISIBLE_DEVICES=0 python train_csnet.py -c <config-file> -f <fold-idx> -t <test-mode>
+python train_csnet.py -c <config-file> -f <fold-idx> -t <test-mode>
 ```
 
-Again, this step can be run without parameters. 
+It also can be run without parameters. 
 ```bash
-CUDA_VISIBLE_DEVICES=0 python train_csnet.py
+python train_csnet.py
 ```
 
-Then you can find the corresponding experiment log and model file in `results`.
+Then the corresponding experiment log and model file can be found in `results`.
 
 ### 3. Evaluate the result and show the visualization
 ```bash
-CUDA_VISIBLE_DEVICES=0 python eval_csnet.py -graph <graph-file> -mesh <mesh-file> -net <model-weight-file> -img <visualized-result-save-path>
+python eval_csnet.py -graph <graph-file> -mesh <mesh-file> \
+ -net <model-weight-file> -img <visualized-result-save-path>
 ```
 
-You can run this step directly and see the evaluated result by the untrained CSNet in `data/visualization`.
+If no parameters are added, it will give results based on the untrained CSNet.
 ```bash
 CUDA_VISIBLE_DEVICES=0 python eval_csnet.py
 ```
+
+The visualized result is in in `data/visualization`
 
 ## Citation
 ```
