@@ -1,0 +1,27 @@
+path : data/slice
+result : results
+csv : data/index/slice
+num_cls : 3
+
+# Training Settings
+num_workers : 4
+bs : 64
+num_epoch : 51
+
+# Optimizer settings
+lr : 3.0e-4
+lr_freq : 5
+lr_decay : 0.9
+momentum : 0.9
+weight_decay : 1.0e-4
+
+# Model Settings
+task : DC_MT_slice
+input_size : 64
+net : resnet18
+pretrain : [
+  none, 
+  none,
+  none,
+  none,
+  none]

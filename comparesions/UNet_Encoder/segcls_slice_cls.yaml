@@ -1,0 +1,27 @@
+path : data/slice
+result : results
+csv : data/index/slice
+num_cls : 3
+
+# Training Settings
+num_workers : 4
+bs : 64
+num_epoch : 51
+
+# Optimizer settings
+lr : 3.0e-4
+lr_freq : 5
+lr_decay : 0.9
+momentum : 0.9
+weight_decay : 1.0e-44
+
+# Model Settings
+task : SEGCLS
+input_size : 64
+net : encoder_slice
+pretrain : [
+  results/checkpoints/SEGCLS/unet_slice/0-2021-09-09-17-05-best.pth, 
+  results/checkpoints/SEGCLS/unet_slice/1-2021-09-09-18-28-best.pth,
+  results/checkpoints/SEGCLS/unet_slice/2-2021-09-09-19-49-best.pth,
+  results/checkpoints/SEGCLS/unet_slice/3-2021-09-09-21-10-best.pth,
+  results/checkpoints/SEGCLS/unet_slice/4-2021-09-09-22-30-best.pth]
