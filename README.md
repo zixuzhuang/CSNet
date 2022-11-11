@@ -26,8 +26,10 @@ Clone this repo and install the dependencies by
 ```bash
 git clone https://github.com/zixuzhuang/CSNet.git
 cd CSNet
+pip install dgl-cu113 dglgo -f https://data.dgl.ai/wheels/repo.html
 pip install -r requirements.txt
 ```
+Please note: install the dgl library that corresponds to your CUDA version.
 
 ## Usage
 In order to run our framework successfully, the code need to be executed in the following order:

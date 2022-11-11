@@ -1,4 +1,3 @@
-dgl==0.8.0
 einops==0.3.0
 imbalanced_learn==0.8.0
 imblearn==0.0
